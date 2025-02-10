@@ -45,3 +45,26 @@ exports.loginController = async(req,res)=>{
         res.status(401).json(error)
     }
 }
+
+exports.getllAllregister= async(req,res)=>{
+   
+    
+    try {
+      const result = await users.find({}, { Password: 0 })
+      res.status(200).json(result)
+      
+        
+    } catch (error) {
+        res.status(401).json(error)
+    }
+}
+
+exports.userDetails = async(req,res)=>{
+    const userId = req.userId
+    try {
+        const result = await users.findOne({_id:userId},{Password:0})
+        res.status(200).json(result)
+    } catch (error) {
+        res.status(401).json(error)
+    }
+}
